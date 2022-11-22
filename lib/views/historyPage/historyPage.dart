@@ -21,6 +21,7 @@ class _historyPageState extends State<historyPage> {
     
     return  Scaffold(
                  appBar: AppBar(
+
               title: const Text(
                 "Histórico",
                 style: TextStyle(
@@ -30,6 +31,22 @@ class _historyPageState extends State<historyPage> {
               ),
               centerTitle: true,
               backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+              actions: [
+                  PopupMenuButton(
+                  color:  Colors.white,
+                  icon: const Icon(Icons.more_vert,color:  Colors.white,),
+                  itemBuilder: (context) =>[
+                    PopupMenuItem(child: ListTile(
+                      title: const Text("Limpar Histórico"),
+                      onTap: (){
+                        Navigator.pop(context);
+                        Provider.of<HistoryRepository>(context,listen: false).removeAll();
+                      }
+                      )
+                      )
+                  ]
+                  )
+              ],
             ),
     body: Container(
      color:  const Color.fromRGBO(240, 125, 54, 1.0).withOpacity(0.7),
@@ -42,7 +59,7 @@ class _historyPageState extends State<historyPage> {
             return historyList.Lista.isEmpty
             ?const ListTile(
               leading: Icon(Icons.history),
-              title: Text("historico vazio"),
+              title: Text("histórico vazio"),
             )
             : SizedBox(
               

@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class HistoryRepository extends ChangeNotifier{
-  final List<History> _list=[];
+ final List<History> _list=[];
   List<String> conferir=[];
   List<String> salvar=[];
 
@@ -52,6 +52,13 @@ class HistoryRepository extends ChangeNotifier{
     _list.remove(history);
     conferir.remove(history.name);
     salvar.remove(json.encode(history.toJson()));
+    setAll();
+    notifyListeners();
+  }
+  removeAll(){
+    _list.clear();
+    conferir.clear();
+    salvar.clear();
     setAll();
     notifyListeners();
   }
