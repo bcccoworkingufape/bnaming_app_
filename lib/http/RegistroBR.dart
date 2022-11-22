@@ -7,8 +7,8 @@ class RBR{
 
 
   Future<bool> getAPI(String nome) async{
-
-   var  url = 'https://rdap.registro.br/domain/$nome.com.br';
+    String nome1 = nome.replaceAll( ' ', '');
+   var  url = 'https://rdap.registro.br/domain/$nome1.com.br';
    var response = await http.get(Uri.parse(url));
     print("Executando método GET na rota registroBR");
     print(response.statusCode);
