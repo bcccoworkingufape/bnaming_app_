@@ -6,7 +6,8 @@ import '../../Repository/HistoryRepository.dart';
 import '../Card/HistoryCard.dart';
 
 class historyPage extends StatefulWidget {
-  const historyPage({Key? key}) : super(key: key);
+  List<History> selecionadas =[];
+  historyPage({Key? key}) : super(key: key);
 
   @override
   State<historyPage> createState() => _historyPageState();
@@ -15,12 +16,8 @@ class historyPage extends StatefulWidget {
 class _historyPageState extends State<historyPage> {
   List<History> historyList=[];
   
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return  Scaffold(
-                 appBar: AppBar(
+appBarDinamica(){
+  return  AppBar(
 
               title: const Text(
                 "Histórico",
@@ -46,8 +43,14 @@ class _historyPageState extends State<historyPage> {
                       )
                   ]
                   )
-              ],
-            ),
+              ]
+            );
+}
+  @override
+  Widget build(BuildContext context) {
+    
+    return  Scaffold(
+                 appBar: appBarDinamica(),
     body: Container(
      color:  const Color.fromRGBO(240, 125, 54, 1.0).withOpacity(0.7),
       height: MediaQuery.of(context).size.height,
@@ -69,6 +72,7 @@ class _historyPageState extends State<historyPage> {
                 itemBuilder: (_,index){
                   
                   return HistoryCard(history: historyList.Lista[index]);
+                  
                 },
                 
                 

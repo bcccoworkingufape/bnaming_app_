@@ -10,6 +10,7 @@ import '../evaluationPage/evaluation_page.dart';
 
 class HistoryCard extends StatefulWidget {
   History history;
+  
 
   HistoryCard({Key? key,required this.history}) : super(key: key);
 
@@ -18,8 +19,9 @@ class HistoryCard extends StatefulWidget {
 }
 
 class _HistoryCardState extends State<HistoryCard> {
-  @override
+  List<String> selecionadas =[];
 
+  @override
    mostrarDetalhes(){
     Navigator.push(
       context,
@@ -36,6 +38,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
+    
     return Card (
       shape: RoundedRectangleBorder(
         side: const BorderSide(
@@ -79,8 +82,21 @@ class _HistoryCardState extends State<HistoryCard> {
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: Colors.white,
-                        )
-                        )
+                        ),
+                        ),
+                        selected: selecionadas.contains(widget.history.name),
+                        selectedTileColor:  const Color.fromRGBO(0, 0, 0, 0).withOpacity(0.2),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                          ),
+                          onLongPress: (){
+                            setState(() {
+
+                                (selecionadas.contains(widget.history.name))
+                                    ? selecionadas.remove(widget.history.name)
+                                    : selecionadas.add(widget.history.name);
+                            });
+                            },
                         )
                     ]
                     ),

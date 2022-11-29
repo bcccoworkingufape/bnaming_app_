@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Mdi.history,size: 30, color: Color.fromRGBO(240, 125, 54, 1.0),),
               backgroundColor: Colors.white,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const historyPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  historyPage()));
               },
             ), 
           ],
