@@ -17,15 +17,15 @@ class HistoryRepository extends ChangeNotifier{
 
   saveAll(History history) async{
     
-    if(!conferir.contains(history.name)){
+    if(!conferir.contains(history.name+"/"+history.segment)){
       if(_list.length<20){
         _list.insert(0, history);
-        conferir.insert(0, history.name);
+        conferir.insert(0, history.name+"/"+history.segment);
 
       }else{
         remove(_list[_list.length-1]);
         _list.insert(0, history);
-        conferir.insert(0, history.name);
+        conferir.insert(0, history.name+"/"+history.segment);
       }
       salvar.add(json.encode(history.toJson()));  
     }
@@ -50,7 +50,7 @@ class HistoryRepository extends ChangeNotifier{
   
   remove(History history){
     _list.remove(history);
-    conferir.remove(history.name);
+    conferir.remove(history.name+"/"+history.segment);
     salvar.remove(json.encode(history.toJson()));
     setAll();
     notifyListeners();

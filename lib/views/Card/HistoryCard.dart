@@ -84,7 +84,7 @@ class _HistoryCardState extends State<HistoryCard> {
                             color: Colors.white,
                         ),
                         ),
-                        selected: selecionadas.contains(widget.history.name),
+                        //selected: selecionadas.contains(widget.history.name),
                         selectedTileColor:  const Color.fromRGBO(0, 0, 0, 0).withOpacity(0.2),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12))
