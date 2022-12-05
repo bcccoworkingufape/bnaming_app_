@@ -16,7 +16,8 @@ class ClientHttp {
 
     // Realizando a requisição
     http.Response response = await http.get(request);
-
+    print(response.body);
+    print(response.statusCode);
     // Convertendo dados para JSON
     var dado = json.decode(response.body);
     print("Executando método GET na rota /evaluation");

@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
     historico = context.watch<HistoryRepository>();
     historico.getAll();
     historico.setAll();
-    bool registrado=false;
     final RBR _api = RBR();
     return Scaffold(
       backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),

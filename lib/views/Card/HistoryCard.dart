@@ -1,6 +1,7 @@
 
 
 
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,9 @@ import '../evaluationPage/evaluation_page.dart';
 class HistoryCard extends StatefulWidget {
   History history;
   
+  
+  
+  
 
   HistoryCard({Key? key,required this.history}) : super(key: key);
 
@@ -20,6 +24,9 @@ class HistoryCard extends StatefulWidget {
 
 class _HistoryCardState extends State<HistoryCard> {
   List<String> selecionadas =[];
+  Cor cor = Cor();
+  
+  
 
   @override
    mostrarDetalhes(){
@@ -38,18 +45,20 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
-    
+      cor.opcao1();
     return Card (
+      
+      
       shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.white,
+        side:  BorderSide(
+          color:cor.corSecundaria,
           width: 5,
           
           ),
         borderRadius: BorderRadius.circular(15.0)
       ),
         
-        color: const Color.fromRGBO(240, 125, 54, 1.0),
+        color: cor.corPrimaria,
       
       
       margin: const EdgeInsets.only(top: 12),
@@ -66,37 +75,27 @@ class _HistoryCardState extends State<HistoryCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start ,
                     children:[
+                      
                         ListTile(
                           title:
                           Text(widget.history.name, 
-                          style: const TextStyle(
+                          style:  TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
-                            color: Colors.white
+                            color: cor.corSecundaria
                     
                           ),
                             ),
                         
                         subtitle: Text("Segmento: ${widget.history.segment}",
-                        style: const TextStyle(
+                        style:  TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
-                            color: Colors.white,
+                            color: cor.corSecundaria,
                         ),
                         ),
-                        //selected: selecionadas.contains(widget.history.name),
-                        selectedTileColor:  const Color.fromRGBO(0, 0, 0, 0).withOpacity(0.2),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12))
-                          ),
-                          onLongPress: (){
-                            setState(() {
-
-                                (selecionadas.contains(widget.history.name))
-                                    ? selecionadas.remove(widget.history.name)
-                                    : selecionadas.add(widget.history.name);
-                            });
-                            },
+                       
+                            
                         )
                     ]
                     ),
@@ -106,7 +105,7 @@ class _HistoryCardState extends State<HistoryCard> {
                 
                 ),
                 PopupMenuButton(
-                  color:  Colors.white,
+                  color:  cor.corSecundaria,
                   icon: const Icon(Icons.more_vert,color:  Colors.white,),
                   itemBuilder: (context) =>[
                     PopupMenuItem(child: ListTile(
