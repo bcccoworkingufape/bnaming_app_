@@ -45,10 +45,8 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
-      cor.opcao1();
+      (selecionadas.contains(widget.history.name))?cor.opcao1():cor.opcao2();
     return Card (
-      
-      
       shape: RoundedRectangleBorder(
         side:  BorderSide(
           color:cor.corSecundaria,
@@ -59,8 +57,6 @@ class _HistoryCardState extends State<HistoryCard> {
       ),
         
         color: cor.corPrimaria,
-      
-      
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
@@ -94,7 +90,15 @@ class _HistoryCardState extends State<HistoryCard> {
                             color: cor.corSecundaria,
                         ),
                         ),
-                       
+                          onLongPress: (){
+                            setState(() {
+                                
+                                (selecionadas.contains(widget.history.name))
+                                    ? selecionadas.remove(widget.history.name)
+                                    : selecionadas.add(widget.history.name);
+                            });
+                            },
+                                                   
                             
                         )
                     ]
