@@ -1,7 +1,9 @@
 
 
 
+import 'package:bnaming_app/http/RegistroBR.dart';
 import 'package:bnaming_app/model/Cor.dart';
+import 'package:bnaming_app/model/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +31,14 @@ class _HistoryCardState extends State<HistoryCard> {
   
 
   @override
-   mostrarDetalhes(){
+   mostrarDetalhes() async {
+    Alert alert=Alert();
+    final RBR _api = RBR();
+    var registrado = _api.getAPI(widget.history.name);
+    bool registro = await registrado;
+    if(registro){  
+      alert.snackBar1(context) ; 
+    } 
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const EvaluationPage(),
