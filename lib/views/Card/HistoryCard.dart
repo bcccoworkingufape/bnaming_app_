@@ -45,7 +45,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
-      (selecionadas.contains(widget.history.name))?cor.opcao1():cor.opcao2();
+      (selecionadas.contains(widget.history.name))?cor.opcao2():cor.opcao1();
     return Card (
       shape: RoundedRectangleBorder(
         side:  BorderSide(
@@ -60,7 +60,15 @@ class _HistoryCardState extends State<HistoryCard> {
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap: () => mostrarDetalhes(),
+        onTap:(){ (selecionadas.isEmpty)
+        ?
+        setState(() {
+         (selecionadas.contains(widget.history.name))
+          ? selecionadas.remove(widget.history.name)
+          : selecionadas.add(widget.history.name);
+        })
+        :mostrarDetalhes();
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
           child: Row(
@@ -73,6 +81,17 @@ class _HistoryCardState extends State<HistoryCard> {
                     children:[
                       
                         ListTile(
+                          leading: (selecionadas.contains(widget.history.name))
+                          ? 
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                               child: Icon(Icons.check_box_outlined,
+                            color: cor.corSecundaria,
+                            ),
+                             )
+                          
+                          :null,
                           title:
                           Text(widget.history.name, 
                           style:  TextStyle(
