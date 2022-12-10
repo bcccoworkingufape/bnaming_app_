@@ -60,14 +60,7 @@ class _HistoryCardState extends State<HistoryCard> {
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap:(){ (selecionadas.isEmpty)
-        ?
-        setState(() {
-         (selecionadas.contains(widget.history.name))
-          ? selecionadas.remove(widget.history.name)
-          : selecionadas.add(widget.history.name);
-        })
-        :mostrarDetalhes();
+        onTap:(){ mostrarDetalhes();
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
