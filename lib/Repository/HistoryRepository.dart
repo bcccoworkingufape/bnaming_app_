@@ -10,6 +10,8 @@ class HistoryRepository extends ChangeNotifier{
  final List<History> _list=[];
   List<String> conferir=[];
   List<String> salvar=[];
+  List<History> selecionadas=[];
+
 
 
 
@@ -60,6 +62,18 @@ class HistoryRepository extends ChangeNotifier{
     conferir.clear();
     salvar.clear();
     setAll();
+    notifyListeners();
+  }
+
+  selecionar(History history){
+      selecionadas.add(history);
+      notifyListeners();
+  }
+  getSelecionadas(){
+    return selecionadas;
+  }
+  removeSelecionadas(History history){
+    selecionadas.remove(history);
     notifyListeners();
   }
 

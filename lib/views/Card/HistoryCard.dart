@@ -23,7 +23,7 @@ class HistoryCard extends StatefulWidget {
 }
 
 class _HistoryCardState extends State<HistoryCard> {
-  List<String> selecionadas =[];
+  
   Cor cor = Cor();
   
   
@@ -45,7 +45,8 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
-      (selecionadas.contains(widget.history.name))?cor.opcao2():cor.opcao1();
+    
+      (Provider.of<HistoryRepository>(context,listen: false).selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
     return Card (
       shape: RoundedRectangleBorder(
         side:  BorderSide(
@@ -62,6 +63,13 @@ class _HistoryCardState extends State<HistoryCard> {
       child: InkWell(
         onTap:(){ mostrarDetalhes();
         },
+        onLongPress: (){
+          
+          (Provider.of<HistoryRepository>(context,listen: false).selecionadas.contains(widget.history))
+              ? Provider.of<HistoryRepository>(context,listen: false).removeSelecionadas(widget.history)
+              : Provider.of<HistoryRepository>(context,listen: false).selecionar(widget.history);
+        
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
           child: Row(
@@ -74,7 +82,7 @@ class _HistoryCardState extends State<HistoryCard> {
                     children:[
                       
                         ListTile(
-                          leading: (selecionadas.contains(widget.history.name))
+                          leading: (Provider.of<HistoryRepository>(context,listen: false).getSelecionadas().contains(widget.history))
                           ? 
                           SizedBox(
                             width: 40,
@@ -102,14 +110,7 @@ class _HistoryCardState extends State<HistoryCard> {
                             color: cor.corSecundaria,
                         ),
                         ),
-                          onLongPress: (){
-                            setState(() {
-                                
-                                (selecionadas.contains(widget.history.name))
-                                    ? selecionadas.remove(widget.history.name)
-                                    : selecionadas.add(widget.history.name);
-                            });
-                            },
+                          
                                                    
                             
                         )
