@@ -18,7 +18,7 @@ class ClientHttp {
     // Realizando a requisição
     http.Response response = await http.get(request);
     print(response.body);
-    print(response.statusCode);
+    
     // Convertendo dados para JSON
     var dado = json.decode(response.body);
     print("Executando método GET na rota /evaluation");
@@ -43,7 +43,9 @@ class ClientHttp {
     var request = Uri.parse(urlBase+"/evaluation");
 
     // Realizando a requisição
-    http.Response response = await http.post(request,body: dados);
+    http.Response response = await http.post(request,body: dados,headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },);
 
     // Convertendo dados para JSON
     var dado = json.decode(response.body);
