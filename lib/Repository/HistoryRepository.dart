@@ -10,12 +10,13 @@ class HistoryRepository extends ChangeNotifier{
  final List<History> _list=[];
   List<String> conferir=[];
   List<String> salvar=[];
-  List<History> selecionadas=[];
+  List<History> _selecionadas=[];
 
 
 
 
   UnmodifiableListView<History> get Lista => UnmodifiableListView(_list);
+  UnmodifiableListView<History> get Selecionadas => UnmodifiableListView(_selecionadas);
 
   saveAll(History history) async{
     
@@ -66,14 +67,17 @@ class HistoryRepository extends ChangeNotifier{
   }
 
   selecionar(History history){
-      selecionadas.add(history);
+      _selecionadas.add(history);
       notifyListeners();
   }
-  getSelecionadas(){
-    return selecionadas;
-  }
+
   removeSelecionadas(History history){
-    selecionadas.remove(history);
+    _selecionadas.remove(history);
+    notifyListeners();
+  }
+
+  limparSelecionadas(){
+    _selecionadas.clear();
     notifyListeners();
   }
 

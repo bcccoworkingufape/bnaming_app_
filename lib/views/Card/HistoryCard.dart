@@ -1,6 +1,4 @@
 
-
-
 import 'package:bnaming_app/model/Cor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +9,6 @@ import '../evaluationPage/evaluation_page.dart';
 
 class HistoryCard extends StatefulWidget {
   History history;
-  
-  
-  
-  
 
   HistoryCard({Key? key,required this.history}) : super(key: key);
 
@@ -45,8 +39,9 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
+    var historico = context.watch<HistoryRepository>();
     
-      (Provider.of<HistoryRepository>(context,listen: false).selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
+    (historico.Selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
     return Card (
       shape: RoundedRectangleBorder(
         side:  BorderSide(
@@ -65,9 +60,9 @@ class _HistoryCardState extends State<HistoryCard> {
         },
         onLongPress: (){
           
-          (Provider.of<HistoryRepository>(context,listen: false).selecionadas.contains(widget.history))
-              ? Provider.of<HistoryRepository>(context,listen: false).removeSelecionadas(widget.history)
-              : Provider.of<HistoryRepository>(context,listen: false).selecionar(widget.history);
+          (historico.Selecionadas.contains(widget.history))
+              ? historico.removeSelecionadas(widget.history)
+              : historico.selecionar(widget.history);
         
         },
         child: Padding(
@@ -82,7 +77,7 @@ class _HistoryCardState extends State<HistoryCard> {
                     children:[
                       
                         ListTile(
-                          leading: (Provider.of<HistoryRepository>(context,listen: false).getSelecionadas().contains(widget.history))
+                          leading: (historico.Selecionadas.contains(widget.history))
                           ? 
                           SizedBox(
                             width: 40,
