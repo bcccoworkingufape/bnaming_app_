@@ -73,6 +73,7 @@ class _historyPageState extends State<historyPage> {
 
   @override
   Widget build(BuildContext context) {
+    var historico = context.watch<HistoryRepository>();
     Cor cor2 = Cor();
     cor2.opcao1();
     return Scaffold(
@@ -98,6 +99,28 @@ class _historyPageState extends State<historyPage> {
                 );
         }),
       ),
+      floatingActionButton: (historico.Selecionadas.isNotEmpty)
+      ?
+      FloatingActionButton.extended(
+        onPressed: (() {
+          
+        }),
+        backgroundColor: cor2.corSecundaria,
+        icon:  Icon(Icons.delete,color: cor2.corPrimaria,),
+         label:  Text("Remover",
+         style: TextStyle(
+          color: cor2.corPrimaria,
+          letterSpacing: 0 ,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          ) ,
+         )
+         
+         )
+         :null,
+         
+         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      
     );
   }
 }
