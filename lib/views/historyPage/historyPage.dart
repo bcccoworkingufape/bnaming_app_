@@ -103,7 +103,7 @@ class _historyPageState extends State<historyPage> {
       ?
       FloatingActionButton.extended(
         onPressed: (() {
-          
+          historico.removerSelecionadasHistorico();
         }),
         backgroundColor: cor2.corSecundaria,
         icon:  Icon(Icons.delete,color: cor2.corPrimaria,),

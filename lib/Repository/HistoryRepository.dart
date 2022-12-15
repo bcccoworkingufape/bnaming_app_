@@ -44,9 +44,9 @@ class HistoryRepository extends ChangeNotifier{
       SharedPreferences preferences = await SharedPreferences.getInstance();
       List<String>? jsonHistory = preferences.getStringList("history");
       for(int i =0; i< jsonHistory!.length;i++){
-      Map<String, dynamic> mapHistory = jsonDecode(jsonHistory[i]);
-      History history = History.fromJson(mapHistory);
-      saveAll(history);
+        Map<String, dynamic> mapHistory = jsonDecode(jsonHistory[i]);
+        History history = History.fromJson(mapHistory);
+        saveAll(history);
       }
       
   }
@@ -79,6 +79,13 @@ class HistoryRepository extends ChangeNotifier{
   limparSelecionadas(){
     _selecionadas.clear();
     notifyListeners();
+  }
+
+  removerSelecionadasHistorico(){
+      _selecionadas.forEach((History history) {
+        remove(history);
+       });
+      limparSelecionadas();
   }
 
   int tamanho() {
