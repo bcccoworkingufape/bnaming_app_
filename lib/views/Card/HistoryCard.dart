@@ -1,5 +1,7 @@
 
+import 'package:bnaming_app/http/RegistroBR.dart';
 import 'package:bnaming_app/model/Cor.dart';
+import 'package:bnaming_app/model/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +19,7 @@ class HistoryCard extends StatefulWidget {
 }
 
 class _HistoryCardState extends State<HistoryCard> {
+  Alert alert = Alert();
   
   Cor cor = Cor();
   
@@ -39,6 +42,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
+    RBR _api= RBR();
     var historico = context.watch<HistoryRepository>();
     
     (historico.Selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
@@ -56,7 +60,10 @@ class _HistoryCardState extends State<HistoryCard> {
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap:(){ mostrarDetalhes();
+        onTap:() async {
+            bool registrado = await _api.getAPI(widget.history.name);
+            (registrado)?alert.snackBar1(context):null;
+            mostrarDetalhes();
         },
         onLongPress: (){
           
