@@ -60,10 +60,14 @@ class _HistoryCardState extends State<HistoryCard> {
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap:() async {
-            bool registrado = await _api.getAPI(widget.history.name);
-            (registrado)?alert.snackBar1(context):null;
-            mostrarDetalhes();
+        onTap:()  {
+          (historico.Selecionadas.isEmpty)
+          ?
+            mostrarDetalhes()
+            
+          :(historico.Selecionadas.contains(widget.history))
+              ? historico.removeSelecionadas(widget.history)
+              : historico.selecionar(widget.history);
         },
         onLongPress: (){
           
