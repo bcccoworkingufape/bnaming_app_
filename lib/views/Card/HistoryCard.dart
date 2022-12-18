@@ -1,6 +1,3 @@
-
-
-
 import 'package:bnaming_app/http/RegistroBR.dart';
 import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/model/alert.dart';
@@ -13,10 +10,6 @@ import '../evaluationPage/evaluation_page.dart';
 
 class HistoryCard extends StatefulWidget {
   History history;
-  
-  
-  
-  
 
   HistoryCard({Key? key,required this.history}) : super(key: key);
 
@@ -25,7 +18,8 @@ class HistoryCard extends StatefulWidget {
 }
 
 class _HistoryCardState extends State<HistoryCard> {
-  List<String> selecionadas =[];
+  Alert alert = Alert();
+  
   Cor cor = Cor();
   
   
@@ -54,10 +48,11 @@ class _HistoryCardState extends State<HistoryCard> {
   
   @override
   Widget build(BuildContext context) {
-      cor.opcao1();
+    RBR _api= RBR();
+    var historico = context.watch<HistoryRepository>();
+    
+    (historico.Selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
     return Card (
-      
-      
       shape: RoundedRectangleBorder(
         side:  BorderSide(
           color:cor.corSecundaria,
@@ -68,12 +63,25 @@ class _HistoryCardState extends State<HistoryCard> {
       ),
         
         color: cor.corPrimaria,
-      
-      
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap: () => mostrarDetalhes(),
+        onTap:()  {
+          (historico.Selecionadas.isEmpty)
+          ?
+            mostrarDetalhes()
+            
+          :(historico.Selecionadas.contains(widget.history))
+              ? historico.removeSelecionadas(widget.history)
+              : historico.selecionar(widget.history);
+        },
+        onLongPress: (){
+          
+          (historico.Selecionadas.contains(widget.history))
+              ? historico.removeSelecionadas(widget.history)
+              : historico.selecionar(widget.history);
+        
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
           child: Row(
@@ -86,6 +94,17 @@ class _HistoryCardState extends State<HistoryCard> {
                     children:[
                       
                         ListTile(
+                          leading: (historico.Selecionadas.contains(widget.history))
+                          ? 
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                               child: Icon(Icons.check_box_outlined,
+                            color: cor.corSecundaria,
+                            ),
+                             )
+                          
+                          :null,
                           title:
                           Text(widget.history.name, 
                           style:  TextStyle(
@@ -103,7 +122,8 @@ class _HistoryCardState extends State<HistoryCard> {
                             color: cor.corSecundaria,
                         ),
                         ),
-                       
+                          
+                                                   
                             
                         )
                     ]

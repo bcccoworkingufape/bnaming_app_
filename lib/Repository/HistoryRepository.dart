@@ -10,10 +10,13 @@ class HistoryRepository extends ChangeNotifier{
  final List<History> _list=[];
   List<String> conferir=[];
   List<String> salvar=[];
+  List<History> _selecionadas=[];
+
 
 
 
   UnmodifiableListView<History> get Lista => UnmodifiableListView(_list);
+  UnmodifiableListView<History> get Selecionadas => UnmodifiableListView(_selecionadas);
 
   saveAll(History history) async{
     
@@ -41,9 +44,9 @@ class HistoryRepository extends ChangeNotifier{
       SharedPreferences preferences = await SharedPreferences.getInstance();
       List<String>? jsonHistory = preferences.getStringList("history");
       for(int i =0; i< jsonHistory!.length;i++){
-      Map<String, dynamic> mapHistory = jsonDecode(jsonHistory[i]);
-      History history = History.fromJson(mapHistory);
-      saveAll(history);
+        Map<String, dynamic> mapHistory = jsonDecode(jsonHistory[i]);
+        History history = History.fromJson(mapHistory);
+        saveAll(history);
       }
       
   }
@@ -61,6 +64,28 @@ class HistoryRepository extends ChangeNotifier{
     salvar.clear();
     setAll();
     notifyListeners();
+  }
+
+  selecionar(History history){
+      _selecionadas.add(history);
+      notifyListeners();
+  }
+
+  removeSelecionadas(History history){
+    _selecionadas.remove(history);
+    notifyListeners();
+  }
+
+  limparSelecionadas(){
+    _selecionadas.clear();
+    notifyListeners();
+  }
+
+  removerSelecionadasHistorico(){
+      _selecionadas.forEach((History history) {
+        remove(history);
+       });
+      limparSelecionadas();
   }
 
   int tamanho() {

@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 class ClientHttp {
 
   // Definindo URL base para requisições da API
-  String urlBase = "https://bnaming-api.herokuapp.com"; //URL para API no Heroku
+  //String urlBase = "https://bnaming-api.herokuapp.com"; //URL para API no Heroku
   //String urlBase = "http://192.168.18.155:5000"; //URL para API em localhost
+  String urlBase = "http://192.168.1.9:5000"; //URL para API em localhost Rodrigo
 
   //Método GET para requisitar a API e verificar se está funcionando
   Future<Map> getAPI() async{
@@ -17,7 +18,7 @@ class ClientHttp {
     // Realizando a requisição
     http.Response response = await http.get(request);
     print(response.body);
-    print(response.statusCode);
+    
     // Convertendo dados para JSON
     var dado = json.decode(response.body);
     print("Executando método GET na rota /evaluation");
@@ -42,7 +43,9 @@ class ClientHttp {
     var request = Uri.parse(urlBase+"/evaluation");
 
     // Realizando a requisição
-    http.Response response = await http.post(request,body: dados);
+    http.Response response = await http.post(request,body: dados,headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },);
 
     // Convertendo dados para JSON
     var dado = json.decode(response.body);
