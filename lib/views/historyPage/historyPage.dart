@@ -51,6 +51,7 @@ class _historyPageState extends State<historyPage> {
     } else {
       cor.opcao2();
       return AppBar(
+        
         leading: IconButton(
           color: cor.corSecundaria,
           icon: const Icon(Icons.close),
@@ -105,13 +106,21 @@ class _historyPageState extends State<historyPage> {
         onPressed: (() {
           historico.removerSelecionadasHistorico();
         }),
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+        side:  BorderSide(
+          color:cor.corSecundaria,
+          width: 2, 
+          ),
+        borderRadius: BorderRadius.circular(10.0)
+      ),
         backgroundColor: cor2.corSecundaria,
         icon:  Icon(Icons.delete,color: cor2.corPrimaria,),
          label:  Text("Remover",
          style: TextStyle(
           color: cor2.corPrimaria,
           letterSpacing: 0 ,
-          fontSize: 18,
+          fontSize: 19,
           fontWeight: FontWeight.w500,
           ) ,
          )
