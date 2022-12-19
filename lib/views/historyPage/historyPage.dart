@@ -59,11 +59,11 @@ class _historyPageState extends State<historyPage> {
               historico.limparSelecionadas();
           },
         ),
-        title: Text("${historico.Selecionadas.length} selecionadas",
+        title: Text("${historico.Selecionadas.length} Selecionadas",
         style:  TextStyle(
               color: cor.corSecundaria,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 21,
+              fontWeight: FontWeight.w600,
         ),
         ),
         centerTitle: true,
@@ -110,9 +110,9 @@ class _historyPageState extends State<historyPage> {
         shape: RoundedRectangleBorder(
         side:  BorderSide(
           color:cor.corSecundaria,
-          width: 2, 
+          width: 3, 
           ),
-        borderRadius: BorderRadius.circular(10.0)
+        borderRadius: BorderRadius.circular(12.0)
       ),
         backgroundColor: cor2.corSecundaria,
         icon:  Icon(Icons.delete,color: cor2.corPrimaria,),
@@ -120,8 +120,9 @@ class _historyPageState extends State<historyPage> {
          style: TextStyle(
           color: cor2.corPrimaria,
           letterSpacing: 0 ,
-          fontSize: 19,
+          fontSize: 20,
           fontWeight: FontWeight.w500,
+          
           ) ,
          )
          

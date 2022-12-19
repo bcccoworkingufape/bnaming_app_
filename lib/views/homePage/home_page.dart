@@ -209,13 +209,15 @@ class _HomePageState extends State<HomePage> {
                                 backgroundColor: _colorButton,
                               ),
                               onPressed: () async {
+                                
                                  var  registrado =_api.getAPI(_controllerNaming.text);
                                  bool registro = await registrado;
+                                 History history = History(name:_controllerNaming.text , segment:_dropdownValue, register: registro );
                                 
                                 if(registro){
                                     alert.snackBar1(context);  
                                 } 
-                                History history = History(name:_controllerNaming.text , segment:_dropdownValue );
+                                
                                 historico.saveAll(history);
                                 if(_controllerNaming.text.isNotEmpty){
                                   Navigator.push(

@@ -22,15 +22,19 @@ class _HistoryCardState extends State<HistoryCard> {
   
   Cor cor = Cor();
   
-  
+  mensagem(){
+    if(widget.history.register){
+        return "Nome Registrado";
+    }
+    else{
+    return "Nome Disponível";
+    }
+  }
 
   @override
    mostrarDetalhes() async {
     Alert alert=Alert();
-    final RBR _api = RBR();
-    var registrado = _api.getAPI(widget.history.name);
-    bool registro = await registrado;
-    if(registro){  
+    if(widget.history.register){  
       alert.snackBar1(context) ; 
     } 
     Navigator.push(
@@ -106,22 +110,26 @@ class _HistoryCardState extends State<HistoryCard> {
                           
                           :null,
                           title:
-                          Text(widget.history.name, 
-                          style:  TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            color: cor.corSecundaria
+                          Center(
+                            child: Text(widget.history.name, 
+                            style:  TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: cor.corSecundaria
+                              
                     
-                          ),
                             ),
+                              ),
+                          ),
                         
-                        subtitle: Text("Segmento: ${widget.history.segment}",
-                        style:  TextStyle(
+                        subtitle: Text("Segmento: ${widget.history.segment}\n${mensagem()}",
+                          style:  TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: cor.corSecundaria,
                         ),
                         ),
+                        
                           
                                                    
                             
