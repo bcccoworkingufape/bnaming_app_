@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class Cor{
   late Color corPrimaria;
   late Color corSecundaria;
+  late Color corTerciaria;
 
 
   opcao1(){
     corPrimaria =  const Color.fromRGBO(240, 125, 54, 1.0);
     corSecundaria = Colors.white;
+    corTerciaria = const Color.fromRGBO(128, 128, 128, 1);
   } 
 
    opcao2(){

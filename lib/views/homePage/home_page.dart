@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                           color: cor.corSecundaria,
                           fontWeight: FontWeight.bold,
                         ),
-                        dropdownColor: const Color.fromRGBO(128, 128, 128, 1),
+                        dropdownColor: cor.corTerciaria,
                         iconDisabledColor: cor.corSecundaria,
                         iconEnabledColor: cor.corSecundaria,
                         items: <String>['alimentos/bebidas', 'automotivo', 'bens de consumo', 'energia/combustível', 'entretenimento', 'financeiro', 'logistica', 'serviços', 'tecnologia', 'varejo']

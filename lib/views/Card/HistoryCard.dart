@@ -143,7 +143,7 @@ class _HistoryCardState extends State<HistoryCard> {
                 ),
                 PopupMenuButton(
                   color:  cor.corSecundaria,
-                  icon: const Icon(Icons.more_vert,color:  Colors.white,),
+                  icon:  Icon(Icons.more_vert,color:  cor.corSecundaria,),
                   itemBuilder: (context) =>[
                     PopupMenuItem(child: ListTile(
                       title: const Text("remover do Histórico"),

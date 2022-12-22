@@ -20,12 +20,12 @@ class _HelpPageState extends State<HelpPage> {
       title: Text(title),
       textColor: cor.corPrimaria,
       iconColor: cor.corPrimaria,
-      collapsedTextColor: const Color.fromRGBO(128, 128, 128, 1),
-      collapsedIconColor: const Color.fromRGBO(128, 128, 128, 1),
+      collapsedTextColor: cor.corTerciaria,
+      collapsedIconColor: cor.corTerciaria,
       children: <Widget>[
         ListTile(
           title: Text(text),
-          textColor: const Color.fromRGBO(128, 128, 128, 1),
+          textColor: cor.corTerciaria,
         ),
       ],
     );
@@ -70,7 +70,7 @@ class _HelpPageState extends State<HelpPage> {
               behavior: const ScrollBehavior(),
               child: GlowingOverscrollIndicator(
                 axisDirection: AxisDirection.down,
-                color: const Color.fromRGBO(128, 128, 128, 1),
+                color: cor.corTerciaria,
                 child: ListView(
                   padding: const EdgeInsets.all(20),
                   children: [
@@ -121,7 +121,7 @@ class _HelpPageState extends State<HelpPage> {
                     ),
 
                     Container(
-                      padding: EdgeInsets.fromLTRB(25, 40, 25, 15),
+                      padding: const EdgeInsets.fromLTRB(25, 40, 25, 15),
                       child: Column(
                         children: [
                            Text(
@@ -146,16 +146,16 @@ class _HelpPageState extends State<HelpPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: cor.corPrimaria,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(15),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Mdi.desktopMac,
                                   size: 35,
                                 ),
                               ),
 
-                              SizedBox(width: 30,),
+                              const SizedBox(width: 30,),
 
                               ElevatedButton(
                                 onPressed: () async {
@@ -164,16 +164,16 @@ class _HelpPageState extends State<HelpPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: cor.corPrimaria,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(15),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Mdi.instagram,
                                   size: 35,
                                 ),
                               ),
 
-                              SizedBox(width: 30,),
+                              const SizedBox(width: 30,),
 
                               ElevatedButton(
                                 onPressed: () async {
@@ -182,10 +182,10 @@ class _HelpPageState extends State<HelpPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: cor.corPrimaria,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(15),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Mdi.emailOutline,
                                   size: 35,
                                 ),

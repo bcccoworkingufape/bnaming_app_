@@ -18,7 +18,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
   late Map _visible;
   bool _isChecked = false;
   int _currentPage = 0;
-  MaterialStateProperty<Color> _colorButton = MaterialStateProperty.all<Color>(const Color.fromRGBO(128, 128, 128, 1));
+  
+  MaterialStateProperty<Color> _colorButton = MaterialStateProperty.all<Color>( const Color.fromRGBO(128, 128, 128, 1));
   final List<Map<String,String>> _splashData = [
     {
       "title": "Olá,\nseja bem vindo!",
@@ -66,7 +67,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             if(_currentPage == 2){
                               _colorButton = MaterialStateProperty.all<Color>(const Color.fromRGBO(240, 125, 54, 1.0));
                             }else{
-                              _colorButton = MaterialStateProperty.all<Color>(const Color.fromRGBO(128, 128, 128, 1));
+                              _colorButton = MaterialStateProperty.all<Color>( cor.corTerciaria);
                             }
                           });
                         },
@@ -140,10 +141,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           });
                         },
                       ),
-                      const Text(
+                       Text(
                         "Não mostrar esta tela novamente",
                         style: TextStyle(
-                          color: Color.fromRGBO(128, 128, 128, 1),
+                          color: cor.corTerciaria,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -169,7 +170,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   height: 6,
                   width: _currentPage == index ? 20 : 6,
                   decoration: BoxDecoration(
-                    color: _currentPage == index ? cor.corPrimaria : const Color.fromRGBO(128, 128, 128, 1),
+                    color: _currentPage == index ? cor.corPrimaria :  cor.corTerciaria,
                     borderRadius: BorderRadius.circular(3),
                   ),
                 );
@@ -223,8 +224,8 @@ class SplashContent extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color.fromRGBO(128, 128, 128, 1),
+            style:  TextStyle(
+              color: cor.corTerciaria,
               fontWeight: FontWeight.w700,
             ),
           ),

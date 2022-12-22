@@ -74,9 +74,9 @@ class _EvaluationPageState extends State<EvaluationPage> {
                             ),
                             content: Text(
                               descricao,
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 16,
-                                color: Color.fromRGBO(128, 128, 128, 1),
+                                color: cor.corTerciaria,
                               ),
                             ),
                             actions: <Widget>[
@@ -96,9 +96,9 @@ class _EvaluationPageState extends State<EvaluationPage> {
                         );
                       },
                       iconSize: 10,
-                      icon: const Icon(
+                      icon:  Icon(
                         Mdi.informationOutline,
-                        color: Color.fromRGBO(128, 128, 128, 1),
+                        color: cor.corTerciaria,
                         size: 20,
                       ),
                     ),
@@ -110,10 +110,10 @@ class _EvaluationPageState extends State<EvaluationPage> {
                 alignment: Alignment.centerRight,
                 child: Text(
                   nota.toString(),
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(128, 128, 128, 1),
+                    color: cor.corTerciaria,
                   ),
                 ),
               ),
@@ -132,7 +132,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
             ),
           ),
 
-          const Divider(color: Color.fromRGBO(128, 128, 128, 1),),
+           Divider(color: cor.corTerciaria,),
 
         ],
       ),
@@ -221,8 +221,8 @@ class _EvaluationPageState extends State<EvaluationPage> {
                                   padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                                   child: Text(
                                     _dados["segment"],
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(128, 128, 128, 1),
+                                    style:  TextStyle(
+                                      color: cor.corTerciaria,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -248,10 +248,10 @@ class _EvaluationPageState extends State<EvaluationPage> {
                                         fontWeight: FontWeight.w900,
                                       ),
                                     ),
-                                    const Text(
+                                     Text(
                                       "/5",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(128, 128, 128, 1),
+                                        color: cor.corTerciaria,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -260,12 +260,12 @@ class _EvaluationPageState extends State<EvaluationPage> {
                                 ),
                               ),
                               // Colocando o segmento do nome avaliado
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(00, 0, 20, 0),
+                               Padding(
+                                padding: const EdgeInsets.fromLTRB(00, 0, 20, 0),
                                 child: Text(
                                   "nota média",
                                   style: TextStyle(
-                                    color: Color.fromRGBO(128, 128, 128, 1),
+                                    color: cor.corTerciaria,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -281,8 +281,8 @@ class _EvaluationPageState extends State<EvaluationPage> {
                       //Espaçamento
                       const SizedBox(height: 10,),
 
-                      const Divider(
-                        color: Color.fromRGBO(128, 128, 128, 1),
+                       Divider(
+                        color: cor.corTerciaria,
                       ),
                     ],
                   ),
@@ -294,7 +294,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
                     behavior: const ScrollBehavior(),
                     child: GlowingOverscrollIndicator(
                       axisDirection: AxisDirection.down,
-                      color: const Color.fromRGBO(128, 128, 128, 1),
+                      color: cor.corTerciaria,
                       child: ListView(
                         children: [
 
