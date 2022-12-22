@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/model/alert.dart';
 import 'package:bnaming_app/views/homePage/home_page.dart';
 import 'package:path_provider/path_provider.dart';
@@ -13,7 +14,7 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-
+  Cor cor = Cor();
   late Map _visible;
   bool _isChecked = false;
   int _currentPage = 0;
@@ -38,14 +39,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    cor.opcao1();
     _visible = ModalRoute.of(context)!.settings.arguments as Map;
 
     // Quando a tela Onboard está ativa
     if(_visible["visible"]){
       return Scaffold(
         //backgroundColor: Color.fromRGBO(240, 125, 54, 1.0),
-        backgroundColor: Colors.white,
+        backgroundColor: cor.corSecundaria,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,7 +58,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   behavior: const ScrollBehavior(),
                   child: GlowingOverscrollIndicator(
                     axisDirection: AxisDirection.right,
-                    color: const Color.fromRGBO(240, 125, 54, 1.0),
+                    color: cor.corPrimaria,
                       child: PageView.builder(
                         onPageChanged: (value) {
                           setState(() {
@@ -101,10 +102,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   const SizedBox(height: 20,),
                   
                   ElevatedButton(
-                    child: const Text(
+                    child:  Text(
                       "Continue",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: cor.corSecundaria,
                         fontWeight: FontWeight.w900,
                         fontSize: 20,
                       ),
@@ -131,7 +132,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Checkbox(
-                        activeColor: const Color.fromRGBO(240, 125, 54, 1.0),
+                        activeColor: cor.corPrimaria,
                         value: _isChecked,
                         onChanged: (bool? value){
                           setState(() {
@@ -168,7 +169,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   height: 6,
                   width: _currentPage == index ? 20 : 6,
                   decoration: BoxDecoration(
-                    color: _currentPage == index ? const Color.fromRGBO(240, 125, 54, 1.0) : const Color.fromRGBO(128, 128, 128, 1),
+                    color: _currentPage == index ? cor.corPrimaria : const Color.fromRGBO(128, 128, 128, 1),
                     borderRadius: BorderRadius.circular(3),
                   ),
                 );
@@ -196,6 +197,8 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Cor cor = Cor();
+    cor.opcao1;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -206,9 +209,9 @@ class SplashContent extends StatelessWidget {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style:  TextStyle(
               fontSize: 30,
-              color: Color.fromRGBO(240, 125, 54, 1.0),
+              color: cor.corPrimaria,
               fontWeight: FontWeight.w700,
             ),
           ),

@@ -33,10 +33,10 @@ class _historyPageState extends State<historyPage> {
           backgroundColor: cor.corPrimaria,
           actions: [
             PopupMenuButton(
-                color: Colors.white,
-                icon: const Icon(
+                color: cor.corSecundaria,
+                icon:  Icon(
                   Icons.more_vert,
-                  color: Colors.white,
+                  color: cor.corSecundaria,
                 ),
                 itemBuilder: (context) => [
                       PopupMenuItem(

@@ -1,3 +1,4 @@
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,12 +11,15 @@ class HelpPage extends StatefulWidget {
 }
 
 class _HelpPageState extends State<HelpPage> {
-
+  
   Widget createExpansionTile(String title, String text){
+    Cor cor = Cor();
+    cor.opcao1();
     return ExpansionTile(
+      
       title: Text(title),
-      textColor: const Color.fromRGBO(240, 125, 54, 1.0),
-      iconColor: const Color.fromRGBO(240, 125, 54, 1.0),
+      textColor: cor.corPrimaria,
+      iconColor: cor.corPrimaria,
       collapsedTextColor: const Color.fromRGBO(128, 128, 128, 1),
       collapsedIconColor: const Color.fromRGBO(128, 128, 128, 1),
       children: <Widget>[
@@ -41,6 +45,8 @@ class _HelpPageState extends State<HelpPage> {
 
   @override
   Widget build(BuildContext context) {
+    Cor cor = Cor();
+    cor.opcao1();
     return Scaffold(
 
       // Configurando App Bar
@@ -53,7 +59,7 @@ class _HelpPageState extends State<HelpPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+        backgroundColor: cor.corPrimaria,
       ),
 
       //Configurando corpo da página
@@ -118,12 +124,12 @@ class _HelpPageState extends State<HelpPage> {
                       padding: EdgeInsets.fromLTRB(25, 40, 25, 15),
                       child: Column(
                         children: [
-                          const Text(
+                           Text(
                             "Entre em contato conosco:",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(240, 125, 54, 1.0),
+                              color: cor.corPrimaria,
                             ),
                           ),
 
@@ -139,7 +145,7 @@ class _HelpPageState extends State<HelpPage> {
                                   openBrowserURL(url:url, inApp: false);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Color.fromRGBO(240, 125, 54, 1.0),
+                                  primary: cor.corPrimaria,
                                   shape: CircleBorder(),
                                   padding: EdgeInsets.all(15),
                                 ),
@@ -157,7 +163,7 @@ class _HelpPageState extends State<HelpPage> {
                                   openBrowserURL(url:url, inApp: false);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Color.fromRGBO(240, 125, 54, 1.0),
+                                  primary: cor.corPrimaria,
                                   shape: CircleBorder(),
                                   padding: EdgeInsets.all(15),
                                 ),
@@ -175,7 +181,7 @@ class _HelpPageState extends State<HelpPage> {
                                   openBrowserURL(url:url, inApp: false);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Color.fromRGBO(240, 125, 54, 1.0),
+                                  primary: cor.corPrimaria,
                                   shape: CircleBorder(),
                                   padding: EdgeInsets.all(15),
                                 ),

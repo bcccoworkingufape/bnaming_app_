@@ -1,4 +1,5 @@
 import 'package:bnaming_app/http/RegistroBR.dart';
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/model/Historico.dart';
 import 'package:bnaming_app/model/alert.dart';
 import 'package:bnaming_app/views/evaluationPage/evaluation_page.dart';
@@ -21,7 +22,8 @@ class _HomePageState extends State<HomePage> {
 
     // ignore: non_constant_identifier_names
     late HistoryRepository historico;
-
+    Cor cor = Cor();
+    
     
   Alert alert=Alert();
   String _dropdownValue = "alimentos/bebidas";
@@ -31,12 +33,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    cor.opcao1();
     historico = context.watch<HistoryRepository>();
     historico.getAll();
     historico.setAll();
     final RBR _api = RBR();
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+      backgroundColor: cor.corPrimaria,
 
       
 
@@ -48,8 +51,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             FloatingActionButton(
               heroTag: 'next1',
-              child: const Icon(Mdi.help,size: 30, color: Color.fromRGBO(240, 125, 54, 1.0),),
-              backgroundColor: Colors.white,
+              child:  Icon(Mdi.help,size: 30, color: cor.corPrimaria,),
+              backgroundColor: cor.corSecundaria,
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
               },
@@ -57,8 +60,8 @@ class _HomePageState extends State<HomePage> {
             Expanded(child: Container()),
             FloatingActionButton(
               heroTag: 'next2',
-              child: const Icon(Mdi.history,size: 30, color: Color.fromRGBO(240, 125, 54, 1.0),),
-              backgroundColor: Colors.white,
+              child:  Icon(Mdi.history,size: 30, color: cor.corPrimaria,),
+              backgroundColor: cor.corSecundaria,
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) =>  historyPage()));
               },
@@ -111,33 +114,33 @@ class _HomePageState extends State<HomePage> {
                     TextFormField(
                       controller: _controllerNaming,
                       keyboardType: TextInputType.name,
-                      style: const TextStyle(
+                      style:  TextStyle(
                         fontSize: 22,
-                        color: Colors.white,
+                        color: cor.corSecundaria,
                         fontWeight: FontWeight.bold,
                       ),
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                           labelText: "Digite o nome a ser avaliado",
                           labelStyle: TextStyle(
-                            color: Colors.white,
+                            color: cor.corSecundaria,
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
                           enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)
+                              borderSide: BorderSide(color:cor.corSecundaria )
                           ),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white, width: 3)
+                              borderSide: BorderSide(color: cor.corSecundaria, width: 3)
                           )
                       ),
                       onChanged: (value){
                         setState(() {
                           if(_controllerNaming.text.isEmpty){
                             _colorButton = MaterialStateProperty.all<Color>(const Color.fromRGBO(128, 128, 128, 1));
-                            _colorText = Colors.white;
+                            _colorText = cor.corSecundaria;
                           }else{
-                            _colorButton = MaterialStateProperty.all<Color>(Colors.white);
-                            _colorText = const Color.fromRGBO(240, 125, 54, 1.0);
+                            _colorButton = MaterialStateProperty.all<Color>(cor.corSecundaria);
+                            _colorText = cor.corPrimaria;
                           }
                         });
                       },
@@ -151,14 +154,14 @@ class _HomePageState extends State<HomePage> {
                     //Campo para Selecionar o segmento da marca
                     DropdownButtonFormField(
                         value: _dropdownValue,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 22,
-                          color: Colors.white,
+                          color: cor.corSecundaria,
                           fontWeight: FontWeight.bold,
                         ),
                         dropdownColor: const Color.fromRGBO(128, 128, 128, 1),
-                        iconDisabledColor: Colors.white,
-                        iconEnabledColor: Colors.white,
+                        iconDisabledColor: cor.corSecundaria,
+                        iconEnabledColor: cor.corSecundaria,
                         items: <String>['alimentos/bebidas', 'automotivo', 'bens de consumo', 'energia/combustível', 'entretenimento', 'financeiro', 'logistica', 'serviços', 'tecnologia', 'varejo']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
@@ -166,18 +169,18 @@ class _HomePageState extends State<HomePage> {
                             child: Text(value),
                           );
                         }).toList(),
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           labelText: "Insira o segmento",
                           labelStyle: TextStyle(
-                            color: Colors.white,
+                            color: cor.corSecundaria,
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)
+                                borderSide: BorderSide(color: cor.corSecundaria)
                             ),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white, width: 3)
+                                borderSide: BorderSide(color: cor.corSecundaria, width: 3)
                             )
                         ),
                         onChanged: (String? newValue){

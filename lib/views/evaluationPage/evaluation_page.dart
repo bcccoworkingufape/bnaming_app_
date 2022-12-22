@@ -1,4 +1,5 @@
 import 'package:bnaming_app/http/client.dart';
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/views/helpPage/help_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
@@ -12,12 +13,14 @@ class EvaluationPage extends StatefulWidget {
 }
 
 class _EvaluationPageState extends State<EvaluationPage> {
-
+  Cor cor = Cor();
   late Map _dados;
   final ClientHttp _api = ClientHttp();
 
   // Função para criar o campo com o gráfico de resultado de cada critério
   Widget evaluationCriterionChart(BuildContext context, String criterio, int nota, String descricao){
+
+    cor.opcao1();
 
     // Criando lista base para o gráfico
     List<charts.Series<int, String>> data = [
@@ -33,6 +36,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
     ];
 
     return Container(
+      
       padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,10 +52,10 @@ class _EvaluationPageState extends State<EvaluationPage> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         criterio,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(240, 125, 54, 1.0),
+                          color: cor.corPrimaria,
                         ),
                       ),
                     ),
@@ -62,10 +66,10 @@ class _EvaluationPageState extends State<EvaluationPage> {
                           builder: (BuildContext context) => AlertDialog(
                             title: Text(
                               criterio,
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(240, 125, 54, 1.0),
+                                color: cor.corPrimaria,
                               ),
                             ),
                             content: Text(
@@ -78,12 +82,12 @@ class _EvaluationPageState extends State<EvaluationPage> {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () => Navigator.pop(context, 'OK'),
-                                child: const Text(
+                                child:  Text(
                                   'OK',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(240, 125, 54, 1.0),
+                                    color: cor.corPrimaria,
                                   ),
                                 ),
                               ),
@@ -146,6 +150,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
 
   @override
   Widget build(BuildContext context) {
+    cor.opcao1();
 
     _dados = ModalRoute.of(context)!.settings.arguments as Map;
     late Map _avaliacao;
@@ -170,13 +175,13 @@ class _EvaluationPageState extends State<EvaluationPage> {
                 ),
               ),
               centerTitle: true,
-              backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+              backgroundColor: cor.corPrimaria,
             ),
 
             //Botão flutuante
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Mdi.help,size: 30, color: Colors.white,),
-              backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+              child:  Icon(Mdi.help,size: 30, color: cor.corSecundaria,),
+              backgroundColor: cor.corPrimaria,
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpPage()));
               },
@@ -204,8 +209,8 @@ class _EvaluationPageState extends State<EvaluationPage> {
                                   padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                                   child: Text(
                                     _dados["name"],
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(240, 125, 54, 1.0),
+                                    style:  TextStyle(
+                                      color: cor.corPrimaria,
                                       fontSize: 35,
                                       fontWeight: FontWeight.w900,
                                     ),
@@ -237,8 +242,8 @@ class _EvaluationPageState extends State<EvaluationPage> {
                                   children: [
                                     Text(
                                       _calcMedia(_avaliacao).toString(),
-                                      style: const TextStyle(
-                                        color: Color.fromRGBO(240, 125, 54, 1.0),
+                                      style:  TextStyle(
+                                        color: cor.corPrimaria,
                                         fontSize: 35,
                                         fontWeight: FontWeight.w900,
                                       ),
@@ -321,58 +326,58 @@ class _EvaluationPageState extends State<EvaluationPage> {
         } else if (snapshot.hasError){ // Se tiver erro
           print("ERRO");
           children = Scaffold(
-            backgroundColor: const Color.fromRGBO(240, 125, 54, 1.0),
+            backgroundColor: cor.corPrimaria,
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(
+                   Icon(
                     Icons.warning_amber_rounded,
                     size: 120,
-                    color: Colors.white,
+                    color: cor.corSecundaria,
                   ),
                   const SizedBox(height: 5,),
-                  const Text(
+                   Text(
                     "ATENÇÃO!",
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white
+                      color: cor.corSecundaria
                     ),
                   ),
                   const SizedBox(height: 15,),
-                  const Text(
+                   Text(
                     "Serviço temporariamente indispoível.",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: cor.corSecundaria,
 
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
+                   Text(
                     "Tente novamente mais tarde.",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: cor.corSecundaria,
 
                     ),
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
-                    child: const Text(
+                    child:  Text(
                       "VOLTAR",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(240, 125, 54, 1.0),
+                        color: cor.corPrimaria,
                       ),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(cor.corSecundaria),
                     ),
                     onPressed: (){
                       Navigator.pop(context);
@@ -389,24 +394,24 @@ class _EvaluationPageState extends State<EvaluationPage> {
           print("CARREGANDO");
           children = Scaffold(
             body: Container(
-              color: const Color.fromRGBO(240, 125, 54, 1.0),
+              color: cor.corPrimaria,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children:  [
                     SizedBox(
-                      child: CircularProgressIndicator(color: Colors.white,),
+                      child: CircularProgressIndicator(color: cor.corSecundaria,),
                       width: 60,
                       height: 60,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
                       "Realizando avaliação...",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: cor.corSecundaria,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/views/onboardingPage/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -13,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
+  Cor cor = Cor();
   Map _visible = {"visible":true};
 
   @override
@@ -42,9 +43,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    cor.opcao1();
+
     return Container(
       // Cor de background
-      color: const Color.fromRGBO(240, 125, 54, 1.0),
+      color: cor.corPrimaria,
 
       //Coluna do da tela Splash
       child: Column(
