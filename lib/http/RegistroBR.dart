@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class RBR{
 
-
+// CLASSE QUE VERIFICA SE NOME ESTÁ REGISTRADO NO REGISTRO.BR
   Future<bool> getAPI(String nome) async{
     String nome1 = nome.replaceAll( ' ', '');
    var  url = 'https://rdap.registro.br/domain/$nome1.com.br';

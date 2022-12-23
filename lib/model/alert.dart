@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Classe para o controle de alertas exibidos na tela
 class Alert{
    late String mensagem;
    late bool continuar=false;

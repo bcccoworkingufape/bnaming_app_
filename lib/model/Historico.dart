@@ -1,3 +1,5 @@
+//classe que represento uma entidade de histórico
+
 class History {
   late String name;
   late String segment;

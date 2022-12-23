@@ -8,6 +8,7 @@ import '../../Repository/HistoryRepository.dart';
 import '../../model/Historico.dart';
 import '../evaluationPage/evaluation_page.dart';
 
+//classe para o gerenciamento e exibição dos cards de historico
 class HistoryCard extends StatefulWidget {
   History history;
 
@@ -31,6 +32,7 @@ class _HistoryCardState extends State<HistoryCard> {
     }
   }
 
+//navega para pagina de avaliação atraves de um card de histórico
   @override
    mostrarDetalhes() async {
     Alert alert=Alert();
@@ -50,6 +52,7 @@ class _HistoryCardState extends State<HistoryCard> {
       );
   }
   
+  //faz a construção dos cards na tela
   @override
   Widget build(BuildContext context) {
     RBR _api= RBR();

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../Repository/HistoryRepository.dart';
 import '../Card/HistoryCard.dart';
 
+// classe que constroi e exibe a tela de históricos
 class historyPage extends StatefulWidget {
   historyPage({Key? key}) : super(key: key);
 
@@ -16,6 +17,8 @@ class _historyPageState extends State<historyPage> {
   List<History> historyList = [];
   Cor cor = Cor();
 
+
+//app bar da tela
   appBarDinamica() {
     var historico = context.watch<HistoryRepository>();
     
@@ -23,12 +26,12 @@ class _historyPageState extends State<historyPage> {
       cor.opcao1();
       return AppBar(
           title: const Text(
-            "Histórico",
-            style: TextStyle(
+              "Histórico",
+              style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
-            ),
-          ),
+                              ),
+                            ),
           centerTitle: true,
           backgroundColor: cor.corPrimaria,
           actions: [
@@ -72,6 +75,7 @@ class _historyPageState extends State<historyPage> {
     }
   }
 
+//constroi a tela de historico
   @override
   Widget build(BuildContext context) {
     var historico = context.watch<HistoryRepository>();
@@ -100,6 +104,7 @@ class _historyPageState extends State<historyPage> {
                 );
         }),
       ),
+      //botão flutuante dinamico
       floatingActionButton: (historico.Selecionadas.isNotEmpty)
       ?
       FloatingActionButton.extended(

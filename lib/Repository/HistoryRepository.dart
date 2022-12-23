@@ -5,7 +5,7 @@ import 'package:bnaming_app/model/Historico.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
+//classe para gerenciamento das listas relacionadas ao historico
 class HistoryRepository extends ChangeNotifier{
  final List<History> _list=[];
   List<String> conferir=[];
@@ -18,6 +18,7 @@ class HistoryRepository extends ChangeNotifier{
   UnmodifiableListView<History> get Lista => UnmodifiableListView(_list);
   UnmodifiableListView<History> get Selecionadas => UnmodifiableListView(_selecionadas);
 
+//adiciona um historico a lista que é exibida na pagina de historico
   saveAll(History history) async{
     
     if(!conferir.contains(history.name+"/"+history.segment)){
@@ -34,12 +35,14 @@ class HistoryRepository extends ChangeNotifier{
     }
     notifyListeners();
   }
-  //falta chamar essa função
+  
+  //salva a lista "salvar" usando sharedPreferences
   setAll() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList("history",salvar);
   }
 
+//recupera a lista salva no método anterior
    getAll() async{
       SharedPreferences preferences = await SharedPreferences.getInstance();
       List<String>? jsonHistory = preferences.getStringList("history");
@@ -50,7 +53,7 @@ class HistoryRepository extends ChangeNotifier{
       }
       
   }
-  
+ //remove um historico da lista que é exibida
   remove(History history){
     _list.remove(history);
     conferir.remove(history.name+"/"+history.segment);
@@ -58,6 +61,8 @@ class HistoryRepository extends ChangeNotifier{
     setAll();
     notifyListeners();
   }
+
+  // limpa a lista de históricos exibidos
   removeAll(){
     _list.clear();
     conferir.clear();
@@ -66,10 +71,12 @@ class HistoryRepository extends ChangeNotifier{
     notifyListeners();
   }
 
+
   selecionar(History history){
       _selecionadas.add(history);
       notifyListeners();
   }
+
 
   removeSelecionadas(History history){
     _selecionadas.remove(history);
@@ -81,6 +88,7 @@ class HistoryRepository extends ChangeNotifier{
     notifyListeners();
   }
 
+//exclui todos os elementos presentes em selecionadas da lista que é exibida
   removerSelecionadasHistorico(){
       _selecionadas.forEach((History history) {
         remove(history);

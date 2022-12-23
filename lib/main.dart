@@ -16,7 +16,7 @@ Future<void> main() async {
   _api.getAPI('');
 
   runApp(
-    
+   //usando provider para gerenciamento de estado e estabelecendo hierarquia para acesso ao repositorio 
   ChangeNotifierProvider(
     create:(context)=> HistoryRepository(),
     child: MyApp()

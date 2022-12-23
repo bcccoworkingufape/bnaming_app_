@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//classe para o gerenciamento de cores do projeto
 class Cor{
   late Color corPrimaria;
   late Color corSecundaria;
