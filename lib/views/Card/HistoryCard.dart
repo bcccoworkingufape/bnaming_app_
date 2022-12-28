@@ -86,8 +86,7 @@ class _HistoryCardState extends State<HistoryCard> {
           
           (historico.Selecionadas.contains(widget.history))
               ? historico.removeSelecionadas(widget.history)
-              : historico.selecionar(widget.history);
-        
+              : historico.selecionar(widget.history);  
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),

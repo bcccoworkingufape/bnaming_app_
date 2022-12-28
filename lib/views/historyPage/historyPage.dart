@@ -21,7 +21,6 @@ class _historyPageState extends State<historyPage> {
 //app bar da tela
   appBarDinamica() {
     var historico = context.watch<HistoryRepository>();
-    
     if (historico.Selecionadas.isEmpty) {
       cor.opcao1();
       return AppBar(
@@ -97,52 +96,58 @@ class _historyPageState extends State<historyPage> {
         padding: const EdgeInsets.all(12.0),
         child:
             Consumer<HistoryRepository>(builder: (context, historyList, child) {
-          return historyList.Lista.isEmpty
-              ? const ListTile(
-                  leading: Icon(Icons.history),
-                  title: Text("histórico vazio"),
-                )
-              : SizedBox(
-                  child: ListView.builder(
-                    itemCount: historyList.tamanho(),
-                    itemBuilder: (_, index) {
-                      return HistoryCard(history: historyList.Lista[index]);
-                    },
+              return 
+                 Visibility(
+                    visible: historyList.Lista.isEmpty ,
+                    child: const ListTile(
+                        leading: Icon(Icons.history),
+                        title: Text("Histórico vazio"),
                   ),
-                );
+                    replacement: SizedBox(
+                      child: ListView.builder(
+                      itemCount: historyList.tamanho(),
+                      itemBuilder: (_, index) {
+                        return HistoryCard(history: historyList.Lista[index]);
+                      },
+                      ),
+                    ),
+                  );
+                
         }),
       ),
       //botão flutuante dinamico
-      floatingActionButton: (historico.Selecionadas.isNotEmpty)
-      ?
-      FloatingActionButton.extended(
-        onPressed: (() {
-          historico.removerSelecionadasHistorico();
-        }),
-        elevation: 5,
-        shape: RoundedRectangleBorder(
-        side:  BorderSide(
-          color:cor.corSecundaria,
-          width: 3, 
-          ),
-        borderRadius: BorderRadius.circular(12.0)
-      ),
-        backgroundColor: cor2.corSecundaria,
-        icon:  Icon(Icons.delete,color: cor2.corPrimaria,),
-         label:  Text("Remover",
-         style: TextStyle(
-          color: cor2.corPrimaria,
-          letterSpacing: 0 ,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-          
-          ) ,
-         )
+      floatingActionButton: 
+            Visibility(
+              visible: historico.Selecionadas.isNotEmpty,
+              child: FloatingActionButton.extended(
+                onPressed: (() {
+                  historico.removerSelecionadasHistorico();
+                }),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                side:  BorderSide(
+                  color:cor.corSecundaria,
+                  width: 3, 
+                  ),
+                borderRadius: BorderRadius.circular(12.0)
+              ),
+                backgroundColor: cor2.corSecundaria,
+                icon:  Icon(Icons.delete,color: cor2.corPrimaria,),
+                label:  Text("Remover",
+                style: TextStyle(
+                  color: cor2.corPrimaria,
+                  letterSpacing: 0 ,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  
+                  ) ,
+                )
+                
+                ),
+            ),
          
-         )
-         :null,
          
-         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       
     );
   }
