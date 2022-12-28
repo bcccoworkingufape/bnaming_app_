@@ -16,6 +16,7 @@ class Cor{
    opcao2(){
     corPrimaria =  Colors.white;
     corSecundaria = const Color.fromRGBO(240, 125, 54, 1.0) ;
+    corTerciaria = const Color.fromRGBO(128, 128, 128, 1);
   } 
 
 }

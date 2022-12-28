@@ -93,25 +93,20 @@ class _HistoryCardState extends State<HistoryCard> {
           padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
           child: Row(
             children: [
+                  Visibility(
+                    visible: historico.Selecionadas.contains(widget.history),
+                    child: Icon(Icons.check_box_outlined,
+                    color: cor.corSecundaria,
+                    size: 30,
+                    ),
+                    ),
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.only(left: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start ,
                     children:[
-                      
                         ListTile(
-                          leading: (historico.Selecionadas.contains(widget.history))
-                          ? 
-                          SizedBox(
-                            width: 40,
-                            height: 40,
-                               child: Icon(Icons.check_box_outlined,
-                            color: cor.corSecundaria,
-                            ),
-                             )
-                          
-                          :null,
                           title:
                           Center(
                             child: Text(widget.history.name, 
@@ -144,20 +139,33 @@ class _HistoryCardState extends State<HistoryCard> {
                 )
                 
                 ),
-                PopupMenuButton(
-                  color:  cor.corSecundaria,
-                  icon:  Icon(Icons.more_vert,color:  cor.corSecundaria,),
-                  itemBuilder: (context) =>[
-                    PopupMenuItem(child: ListTile(
-                      title: const Text("remover do Histórico"),
-                      onTap: (){
-                        Navigator.pop(context);
-                        Provider.of<HistoryRepository>(context,listen: false).remove(widget.history);
-                      }
+                
+                Visibility(
+                  visible: !historico.Selecionadas.contains(widget.history),
+                  child: PopupMenuButton(
+                    color:  cor.corTerciaria,
+                    icon:  Icon(Icons.more_vert,color:  cor.corSecundaria,),
+                    itemBuilder: (context) =>[
+                      PopupMenuItem(child: Center(
+                        child: ListTile(
+                          title: const Text("remover do Histórico",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.w500
+                            
+                            ) ,
+                          ),
+                          onTap: (){
+                            Navigator.pop(context);
+                            Provider.of<HistoryRepository>(context,listen: false).remove(widget.history);
+                          }
+                          ),
                       )
-                      )
-                  ]
-                  )
+                        )
+                    ]
+                    ),
+                )
             ]),
           )
       )

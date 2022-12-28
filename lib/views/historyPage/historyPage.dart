@@ -36,7 +36,7 @@ class _historyPageState extends State<historyPage> {
           backgroundColor: cor.corPrimaria,
           actions: [
             PopupMenuButton(
-                color: cor.corSecundaria,
+                color: cor.corTerciaria,
                 icon:  Icon(
                   Icons.more_vert,
                   color: cor.corSecundaria,
@@ -44,7 +44,15 @@ class _historyPageState extends State<historyPage> {
                 itemBuilder: (context) => [
                       PopupMenuItem(
                           child: ListTile(
-                              title: const Text("Limpar Histórico"),
+                              title:  Center(
+                                child: Text("Limpar Histórico",
+                                style: TextStyle(
+                                  color: cor.corSecundaria,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ),
                               onTap: () {
                                 Navigator.pop(context);
                                 historico.removeAll();
