@@ -16,9 +16,7 @@ class RBR{
       return true;
     }else{
       return false;
-    }
-  
-   
+    } 
   }
   
     

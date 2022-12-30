@@ -4,6 +4,7 @@ class History {
   late String name;
   late String segment;
   late bool register ;
+  String nomeRegistro='';
 
     History({
     required this.name,
