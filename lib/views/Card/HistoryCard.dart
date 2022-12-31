@@ -25,7 +25,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   mensagem(){
     if(widget.history.register){
-        return "Nome já Registrado como: ${widget.history.nomeRegistro}";
+        return "Nome já Registrado como:\n ${widget.history.nomeRegistro}";
     }
     else{
     return "Nome Disponível";
