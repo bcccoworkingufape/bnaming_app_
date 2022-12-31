@@ -213,11 +213,11 @@ class _HomePageState extends State<HomePage> {
                               ),
                               onPressed: () async {
                                 
-                                 var  registrado =_api.getAPI(_controllerNaming.text);
-                                 bool registro = await registrado;
-                                 History history = History(name:_controllerNaming.text , segment:_dropdownValue, register: registro );
+                                 bool  registrado = await _api.getAPI(_controllerNaming.text);
+                                 String nomeRegistro = await _api.nomeRegistro(_controllerNaming.text);
+                                 History history = History(name:_controllerNaming.text , segment:_dropdownValue, register: registrado , nomeRegistro: nomeRegistro);
                                 
-                                if(registro){
+                                if(registrado){
                                     alert.snackBar1(context);  
                                 } 
                                 
