@@ -5,6 +5,10 @@ class History {
   late String segment;
   late bool register ;
   late String nomeRegistro;
+  bool isExpanded = false;
+
+
+
 
     History({
     required this.name,

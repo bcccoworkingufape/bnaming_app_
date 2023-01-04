@@ -199,7 +199,7 @@ class SplashContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Cor cor = Cor();
-    cor.opcao1;
+    cor.opcao1();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,

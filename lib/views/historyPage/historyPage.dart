@@ -86,34 +86,53 @@ class _historyPageState extends State<historyPage> {
   @override
   Widget build(BuildContext context) {
     var historico = context.watch<HistoryRepository>();
+    final List<History> _historico = historico.Lista;
     Cor cor2 = Cor();
     cor2.opcao1();
     return Scaffold(
       appBar: appBarDinamica(),
       body: Container(
-        color: cor2.corPrimaria.withOpacity(0.7),
-        height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.all(12.0),
-        child:
-            Consumer<HistoryRepository>(builder: (context, historyList, child) {
-              return 
-                 Visibility(
-                    visible: historyList.Lista.isEmpty ,
-                    child: const ListTile(
-                        leading: Icon(Icons.history),
-                        title: Text("Histórico vazio"),
-                  ),
-                    replacement: SizedBox(
-                      child: ListView.builder(
-                      itemCount: historyList.tamanho(),
-                      itemBuilder: (_, index) {
-                        return HistoryCard(history: historyList.Lista[index]);
-                      },
-                      ),
-                    ),
-                  );
-                
-        }),
+          color: cor2.corPrimaria.withOpacity(0.7),
+          height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.all(12.0),
+        child: SingleChildScrollView (
+          child: ExpansionPanelList(
+            expansionCallback: ((int index, bool isExpanded) {
+              setState(() {
+                _historico[index].isExpanded = !isExpanded;
+              });
+            
+            } ),
+            children: _historico.map<ExpansionPanel>((History history) {
+              return ExpansionPanel(
+                isExpanded: history.isExpanded,
+                headerBuilder: ((BuildContext  context, bool isExpanded) {
+                  return 
+                        Visibility(
+                            visible: historico.Lista.isEmpty ,
+                            child: const ListTile(
+                                leading: Icon(Icons.history),
+                                title: Text("Histórico vazio"),
+                          ),
+                            replacement:           
+                                 HistoryCard(history: history)     
+                          );
+                }),
+                 body: 
+                    Column(
+                      children: const [
+                        Padding(
+                          padding:  EdgeInsets.all(12.0),
+                          child:  ListTile(
+                            title: Text("teste"),
+                          ),
+                        ),
+                      ],
+                    )
+                 );
+            }).toList(),
+          ),
+        ),
       ),
       //botão flutuante dinamico
       floatingActionButton: 
