@@ -25,7 +25,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   mensagem(){
     if(widget.history.register){
-        return "Nome já Registrado como:\n ${widget.history.nomeRegistro}";
+        return " Nome já Registrado\n ${widget.history.nomeRegistro}";
     }
     else{
     return "Nome Disponível";
@@ -73,7 +73,7 @@ class _HistoryCardState extends State<HistoryCard> {
       margin: const EdgeInsets.only(top: 12),
       elevation: 2,
       child: InkWell(
-        onTap:()  {
+         onTap:()  {
           (historico.Selecionadas.isEmpty)
           ?
             mostrarDetalhes()
@@ -88,85 +88,70 @@ class _HistoryCardState extends State<HistoryCard> {
               ? historico.removeSelecionadas(widget.history)
               : historico.selecionar(widget.history);  
         },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20, left:20),
-          child: Row(
-            children: [
-                  Visibility(
-                    visible: historico.Selecionadas.contains(widget.history),
-                    child: Icon(Icons.check_box_outlined,
-                    color: cor.corSecundaria,
-                    size: 30,
-                    ),
-                    ),
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(left: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start ,
-                    children:[
-                        ListTile(
-                          title:
-                          Center(
-                            child: Text(widget.history.name, 
-                            style:  TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: cor.corSecundaria
-                              
-                    
-                            ),
+        child: ExpansionTile(
+          
+          collapsedIconColor: cor.corSecundaria,
+          iconColor: cor.corSecundaria,
+          title:
+              Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10, left:10),
+            child: Row(
+              children: [
+                    Visibility(
+                      visible: historico.Selecionadas.contains(widget.history),
+                      child: Icon(Icons.check_box_outlined,
+                      color: cor.corSecundaria,
+                      size: 30,
+                      ),
+                      ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start ,
+                      children:[
+                          ListTile(
+                            title:
+                            Center(
+                              child: Text(widget.history.name, 
+                              style:  TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: cor.corSecundaria
+                                
+                      
                               ),
-                          ),
-                        
-                        subtitle: Text("Segmento: ${widget.history.segment}\n${mensagem()}",
-                          style:  TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: cor.corSecundaria,
-                        ),
-                        ),
-                        
+                                ),
+                            ),
                           
-                                                   
-                            
-                        )
-                    ]
-                    ),
-                    
-                    
-                )
-                
-                ),
-                
-                Visibility(
-                  visible: !historico.Selecionadas.contains(widget.history),
-                  child: PopupMenuButton(
-                    color:  cor.corTerciaria,
-                    icon:  Icon(Icons.more_vert,color:  cor.corSecundaria,),
-                    itemBuilder: (context) =>[
-                      PopupMenuItem(child: Center(
-                        child: ListTile(
-                          title: const Text("remover do Histórico",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.w500
-                            
-                            ) ,
+                          subtitle: Text("Segmento: ${widget.history.segment}",
+                            style:  TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: cor.corSecundaria,
                           ),
-                          onTap: (){
-                            Navigator.pop(context);
-                            Provider.of<HistoryRepository>(context,listen: false).remove(widget.history);
-                          }
-                          ),
-                      )
-                        )
-                    ]
-                    ),
-                )
-            ]),
-          )
+                          ),     
+                          )
+                      ]
+                      ),   
+                  )
+                  ),   
+              ]
+            )
+              ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text("${mensagem()}",
+                              style:  TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: cor.corSecundaria,
+                              )
+              ),
+            )
+          ],
+        ),
       )
     );
   }
