@@ -25,7 +25,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   mensagem(){
     if(widget.history.register){
-        return " Nome já Registrado\n ${widget.history.nomeRegistro}";
+        return " Nome já Registrado\n ${widget.history.nomeRegistro}\n CNPJ: ${widget.history.cnpj}";
     }
     else{
     return "Nome Disponível";
@@ -74,13 +74,12 @@ class _HistoryCardState extends State<HistoryCard> {
       elevation: 2,
       child: InkWell(
          onTap:()  {
-          (historico.Selecionadas.isEmpty)
-          ?
-            mostrarDetalhes()
-            
-          :(historico.Selecionadas.contains(widget.history))
+          (historico.Selecionadas.isNotEmpty)
+
+           ?(historico.Selecionadas.contains(widget.history))
               ? historico.removeSelecionadas(widget.history)
-              : historico.selecionar(widget.history);
+              : historico.selecionar(widget.history)
+          :null;
         },
         onLongPress: (){
           
@@ -142,12 +141,31 @@ class _HistoryCardState extends State<HistoryCard> {
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text("${mensagem()}",
-                              style:  TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: cor.corSecundaria,
-                              )
+              child: Column(
+                children: [
+                  Text("${mensagem()}",
+                                  style:  TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: cor.corSecundaria,
+                                  )
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color?>((states){
+                        return cor.corSecundaria;
+                      }) 
+                    ),
+                    onPressed: (() {
+                      mostrarDetalhes();
+                    }),
+                     child:  Text("Ver avaliação",
+                     style: TextStyle(
+                        color: cor.corPrimaria
+                     ),
+                     )
+                     )
+                ],
               ),
             )
           ],

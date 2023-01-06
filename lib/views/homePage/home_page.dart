@@ -212,10 +212,10 @@ class _HomePageState extends State<HomePage> {
                                 backgroundColor: _colorButton,
                               ),
                               onPressed: () async {
-                                
+                                String cnpj = await _api.cnpj(_controllerNaming.text);
                                  bool  registrado = await _api.getAPI(_controllerNaming.text);
                                  String nomeRegistro = await _api.nomeRegistro(_controllerNaming.text);
-                                 History history = History(name:_controllerNaming.text , segment:_dropdownValue, register: registrado , nomeRegistro: nomeRegistro);
+                                 History history = History(name:_controllerNaming.text , segment:_dropdownValue, register: registrado , nomeRegistro: nomeRegistro, cnpj: cnpj );
                                 
                                 if(registrado){
                                     alert.snackBar1(context);  
