@@ -5,7 +5,7 @@ class History {
   late String segment;
   late bool register ;
   late String nomeRegistro;
-  bool isExpanded = false;
+  late String cnpj;
 
 
 
@@ -14,7 +14,8 @@ class History {
     required this.name,
     required this.segment,
     required this.register,
-    required this.nomeRegistro
+    required this.nomeRegistro,
+    required this.cnpj
   });
 
   History.fromJson(Map<String, dynamic> json) {
@@ -22,6 +23,7 @@ class History {
     segment = json['segment'];
     register = json['register'];
     nomeRegistro = json['nomeRegistro'];
+    cnpj = json['cnpj'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,6 +32,7 @@ class History {
     data['segment'] = this.segment;
     data['register'] = this.register;
     data['nomeRegistro'] = this.nomeRegistro;
+    data['cnpj'] = this.cnpj;
     return data;
   }
   toLowerCase() {}
