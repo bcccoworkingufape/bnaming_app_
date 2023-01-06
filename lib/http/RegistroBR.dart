@@ -34,8 +34,21 @@ class RBR{
     return nomeRegistro;
   }
     
+    Future<String> cnpj(String nome) async{
+      String cnpj;
+      String nome1 = nome.replaceAll( ' ', '');
+      var  url = 'https://rdap.registro.br/domain/$nome1.com.br';
+      var response =  await http.get(Uri.parse(url));
+      var dado = jsonDecode(response.body);
+      print("executando metodo cnpj");
+      var dado1 = dado['entities'][0];
+      var dado2 = dado1['publicIds'][0];
+      var dado3 = dado2['identifier'];
+      cnpj=dado3;
+      return cnpj;
+    }
 
-    
+    //"publicIds"
 
 
    
