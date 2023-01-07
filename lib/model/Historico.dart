@@ -7,9 +7,6 @@ class History {
   late String nomeRegistro;
   late String cnpj;
 
-
-
-
     History({
     required this.name,
     required this.segment,

@@ -1,3 +1,4 @@
+
 import 'package:bnaming_app/http/RegistroBR.dart';
 import 'package:bnaming_app/model/Cor.dart';
 import 'package:bnaming_app/model/alert.dart';
@@ -87,88 +88,125 @@ class _HistoryCardState extends State<HistoryCard> {
               ? historico.removeSelecionadas(widget.history)
               : historico.selecionar(widget.history);  
         },
-        child: ExpansionTile(
-          
-          collapsedIconColor: cor.corSecundaria,
-          iconColor: cor.corSecundaria,
-          title:
-              Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10, left:10),
-            child: Row(
-              children: [
-                    Visibility(
-                      visible: historico.Selecionadas.contains(widget.history),
-                      child: Icon(Icons.check_box_outlined,
-                      color: cor.corSecundaria,
-                      size: 30,
-                      ),
-                      ),
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start ,
-                      children:[
-                          ListTile(
-                            title:
-                            Center(
-                              child: Text(widget.history.name, 
-                              style:  TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                color: cor.corSecundaria
-                                
-                      
-                              ),
-                                ),
-                            ),
-                          
-                          subtitle: Text("Segmento: ${widget.history.segment}",
-                            style:  TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: cor.corSecundaria,
-                          ),
-                          ),     
-                          )
-                      ]
-                      ),   
-                  )
-                  ),   
-              ]
-            )
-              ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
+        child: Center(
+          child: ExpansionTile(
+            
+            collapsedIconColor: cor.corSecundaria,
+            iconColor: cor.corSecundaria,
+            title:
+                Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10, left:5, right: 5),
+              child: Row(
                 children: [
-                  Text("${mensagem()}",
-                                  style:  TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color: cor.corSecundaria,
-                                  )
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color?>((states){
-                        return cor.corSecundaria;
-                      }) 
+                      Visibility(
+                        visible: historico.Selecionadas.contains(widget.history),
+                        child: Icon(Icons.check_box_outlined,
+                        color: cor.corSecundaria,
+                        size: 30,
+                        ),
+                        ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start ,
+                        children:[
+                            ListTile(
+                              title:
+                              Center(
+                                child: Text(widget.history.name, 
+                                style:  TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  color: cor.corSecundaria
+                                  
+                        
+                                ),
+                                  ),
+                              ),
+                            
+                            subtitle: 
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Center(
+                                    child: Text("Segmento: ${widget.history.segment}",
+                                      style:  TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                        color: cor.corSecundaria,
+                                    ),
+                                    ),
+                                  ),
+                                ),     
+                            )
+                        ]
+                        ),   
+                    )
+                    ),   
+                ]
+              )
+                ),
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(),
+                    child: Text("${mensagem()}",
+                                    style:  TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                      color: cor.corSecundaria,
+                                    )
                     ),
-                    onPressed: (() {
-                      mostrarDetalhes();
-                    }),
-                     child:  Text("Ver avaliação",
-                     style: TextStyle(
-                        color: cor.corPrimaria
-                     ),
-                     )
-                     )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        fixedSize: MaterialStateProperty.resolveWith((states) {
+                          return const Size(145.0, 10);
+                        }),                
+                        backgroundColor: MaterialStateProperty.resolveWith<Color?>((states){
+                          return cor.corSecundaria;
+                        }) ,
+                        shape: MaterialStateProperty.resolveWith((states) {
+                          return RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)  
+                        );
+                        },),
+                        elevation: MaterialStateProperty.resolveWith((states) {
+                          return 0;
+                      },)
+
+                      ),
+                      onPressed: (() {
+                        mostrarDetalhes();
+                      }),
+                       child: Padding(
+                         padding: const EdgeInsets.only(left: 4),
+                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                           children: [
+                             Text("Ver avaliação",
+                                    style: TextStyle(
+                                        color: cor.corPrimaria,
+                                        letterSpacing:0,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        
+                                            ),
+                                        ),
+                             Icon(Icons.arrow_right,color: cor.corPrimaria,)           
+                           ],
+                         ),
+                       ),
+
+                       ),
+                  )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       )
     );
