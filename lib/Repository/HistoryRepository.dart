@@ -20,18 +20,20 @@ class HistoryRepository extends ChangeNotifier{
 
 //adiciona um historico a lista que é exibida na pagina de historico
   saveAll(History history) async{
-    
-    if(!conferir.contains(history.name+"/"+history.segment)){
+    String confere = '';
+    confere = history.name+"/"+history.segment;
+    confere = confere.toLowerCase();
+    if(!conferir.contains(confere)){
       if(_list.length<20){
         _list.insert(0, history);
-        conferir.insert(0, history.name+"/"+history.segment);
+        conferir.insert(0, confere);
 
       }else{
         remove(_list[_list.length-1]);
         _list.insert(0, history);
-        conferir.insert(0, history.name+"/"+history.segment);
+        conferir.insert(0, confere);
       }
-      salvar.add(json.encode(history.toJson()));  
+    salvar.add(json.encode(history.toJson()));  
     }
     notifyListeners();
   }
