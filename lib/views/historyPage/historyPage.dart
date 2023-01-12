@@ -106,7 +106,7 @@ class _historyPageState extends State<historyPage> {
                   ),
                     replacement: SizedBox(
                       child: ListView.builder(
-                      itemCount: historyList.tamanho(),
+                      itemCount: historyList.Lista.length,
                       itemBuilder: (_, index) {
                         return HistoryCard(history: historyList.Lista[index]);
                       },

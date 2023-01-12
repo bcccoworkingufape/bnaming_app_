@@ -57,8 +57,11 @@ class HistoryRepository extends ChangeNotifier{
   }
  //remove um historico da lista que é exibida
   remove(History history){
+    String confere = '';
+    confere = history.name+"/"+history.segment;
+    confere = confere.toLowerCase();
     _list.remove(history);
-    conferir.remove(history.name+"/"+history.segment);
+    conferir.remove(confere);
     salvar.remove(json.encode(history.toJson()));
     setAll();
     notifyListeners();
@@ -98,7 +101,7 @@ class HistoryRepository extends ChangeNotifier{
       limparSelecionadas();
   }
 
-  int tamanho() {
+  /*int tamanho() {
     int tam =_list.length;
     if(tam<10){
         return tam;
@@ -106,5 +109,5 @@ class HistoryRepository extends ChangeNotifier{
         return 10;
     }
             
-    }
+    }*/
 }
