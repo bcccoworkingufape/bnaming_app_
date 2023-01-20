@@ -12,13 +12,21 @@ class Alert{
   final snackBar =
   SnackBar(
         backgroundColor: const Color.fromRGBO(128, 128, 128, 1),
-        content: const Text(
-          'Nome já registrado',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
+        content: Row(
+          children: const [
+            Icon(Icons.warning_amber,
+                color: Colors.white,
+                size: 15,
+                ),
+            Text(
+              '  Este Nome já está em Uso',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         duration: const Duration(seconds: 3),
         action: SnackBarAction(
