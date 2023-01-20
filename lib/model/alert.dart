@@ -19,7 +19,7 @@ class Alert{
                 size: 15,
                 ),
             Text(
-              '  Este Nome já está em Uso',
+              '  Este nome já está em uso',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,

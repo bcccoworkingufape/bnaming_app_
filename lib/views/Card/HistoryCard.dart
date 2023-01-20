@@ -26,7 +26,7 @@ class _HistoryCardState extends State<HistoryCard> {
   
   mensagem(){
     if(widget.history.register){
-        return " Nome Indisponível\n ${widget.history.nomeRegistro}\n CNPJ: ${widget.history.cnpj}";
+        return " Nome já em uso:\n ${widget.history.nomeRegistro}\n CNPJ: ${widget.history.cnpj}";
     }
     else{
     return "Nome Disponível";
