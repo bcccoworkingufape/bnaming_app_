@@ -21,7 +21,6 @@ class HistoryCard extends StatefulWidget {
 
 class _HistoryCardState extends State<HistoryCard> {
   Alert alert = Alert();
-  
   Cor cor = Cor();
   
   mensagem(){
@@ -58,7 +57,8 @@ class _HistoryCardState extends State<HistoryCard> {
   Widget build(BuildContext context) {
     RBR _api= RBR();
     var historico = context.watch<HistoryRepository>();
-    
+    String segment = widget.history.segment;
+    Icon icon_segment = widget.history.IconSegment(segment);
     (historico.Selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
     return Card (
       shape: RoundedRectangleBorder(
@@ -129,12 +129,20 @@ class _HistoryCardState extends State<HistoryCard> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8),
                                   child: Center(
-                                    child: Text("Segmento: ${widget.history.segment}",
-                                      style:  TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400,
-                                        color: cor.corSecundaria,
-                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        icon_segment,
+                                        Text(" "),
+                                        Text(segment,
+                                          style:  TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400,
+                                            color: cor.corSecundaria,
+                                        ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),     
