@@ -58,8 +58,8 @@ class _HistoryCardState extends State<HistoryCard> {
     RBR _api= RBR();
     var historico = context.watch<HistoryRepository>();
     String segment = widget.history.segment;
-    Icon icon_segment = widget.history.IconSegment(segment);
     (historico.Selecionadas.contains(widget.history))?cor.opcao2():cor.opcao1();
+    Icon icon_segment = widget.history.IconSegment(segment, cor.corSecundaria);
     return Card (
       shape: RoundedRectangleBorder(
         side:  BorderSide(

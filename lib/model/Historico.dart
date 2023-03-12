@@ -1,5 +1,6 @@
 //classe que represento uma entidade de histórico
 
+import 'package:bnaming_app/model/Cor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,41 +38,42 @@ class History {
   }
   toLowerCase() {}
 
-   Icon IconSegment(String segment){
+   Icon IconSegment(String segment, Color cor){
+    
     
     switch(segment){
       case 'alimentos/bebidas':
-        return const Icon(Icons.restaurant);
+        return  Icon(Icons.restaurant, color: cor);
 
       case 'automotivo':
-        return const Icon(Icons.time_to_leave);
+        return  Icon(Icons.time_to_leave, color: cor);
 
       case 'bens de consumo':
-        return const Icon(Icons.shopping_cart);
+        return  Icon(Icons.shopping_cart, color: cor);
 
       case 'energia/combustível':
-        return const Icon(Icons.wb_incandescent);
+        return  Icon(Icons.wb_incandescent, color: cor);
 
       case 'entretenimento':
-        return const Icon(Icons.music_note);
+        return  Icon(Icons.music_note, color: cor);
 
       case 'financeiro':
-        return const Icon(Icons.local_atm);
+        return  Icon(Icons.local_atm, color: cor);
 
       case 'logistica':
-        return const Icon(Icons.insert_chart);
+        return  Icon(Icons.insert_chart, color: cor);
         
       case 'serviços':
-        return const Icon(Icons.build);
+        return  Icon(Icons.build, color: cor);
 
       case 'tecnologia':
-        return const Icon(Icons.laptop);
+        return  Icon(Icons.laptop, color: cor);
 
       case 'varejo':
-        return const Icon(Icons.local_offer);
+        return  Icon(Icons.local_offer, color: cor);
 
     }
-    return const Icon(Icons.error);
+    return  Icon(Icons.error, color: cor);
 
   }
 }
